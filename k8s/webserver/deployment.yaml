@@ -14,6 +14,7 @@ spec:
       initContainers:
         - name: db-init
           image: houstonj1/airflow:latest
+          imagePullPolicy: Always
           command:
             - "/bin/sh"
             - "-c"
@@ -27,6 +28,7 @@ spec:
       containers:
         - name: webserver
           image: houstonj1/airflow:latest
+          imagePullPolicy: Always
           command:
             - "airflow"
             - "webserver"
