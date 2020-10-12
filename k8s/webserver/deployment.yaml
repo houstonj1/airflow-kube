@@ -39,3 +39,21 @@ spec:
               cpu: "500m"
           ports:
             - containerPort: 8080
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 50
+            periodSeconds: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 50
+            periodSeconds: 3
+            successThreshold: 1
+            timeoutSeconds: 1
