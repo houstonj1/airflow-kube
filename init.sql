@@ -1,3 +1,0 @@
-CREATE USER airflow WITH PASSWORD 'airflow';
-CREATE DATABASE airflow;
-ALTER DATABASE airflow OWNER TO airflow;
