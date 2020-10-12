@@ -20,11 +20,9 @@ spec:
             - "-c"
           args:
             - "airflow initdb && airflow upgradedb"
-          env:
-            - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
-              value: "postgresql://airflow:airflow@postgres-postgresql.default.svc.cluster.local/airflow"
-            - name: AIRFLOW__CORE__LOAD_EXAMPLES
-              value: "false"
+          envFrom:
+            - configMapRef:
+                name: airflow-config
       containers:
         - name: webserver
           image: houstonj1/airflow:latest
@@ -32,11 +30,9 @@ spec:
           command:
             - "airflow"
             - "webserver"
-          env:
-            - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
-              value: "postgresql://airflow:airflow@postgres-postgresql.default.svc.cluster.local/airflow"
-            - name: AIRFLOW__CORE__LOAD_EXAMPLES
-              value: "false"
+          envFrom:
+            - configMapRef:
+                name: airflow-config
           resources:
             limits:
               memory: "128Mi"

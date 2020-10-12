@@ -6,3 +6,5 @@ namespace: default
 bases:
   - ./webserver
   - ./scheduler
+resources:
+  - "configmap.yaml"
