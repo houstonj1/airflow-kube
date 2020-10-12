@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airflow-scheduler
+spec:
+  selector:
+    matchLabels:
+      app: airflow-scheduler
+  template:
+    metadata:
+      labels:
+        app: airflow-scheduler
+    spec:
+      initContainers:
+        - name: db-init
+          image: houstonj1/airflow:latest
+          command:
+            - "/bin/sh"
+            - "-c"
+          args:
+            - "airflow initdb && airflow upgradedb"
+          env:
+            - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+              value: "postgresql://airflow:airflow@postgres-postgresql.default.svc.cluster.local/airflow"
+            - name: AIRFLOW__CORE__LOAD_EXAMPLES
+              value: "false"
+      containers:
+        - name: scheduler
+          image: houstonj1/airflow:latest
+          command:
+            - "airflow"
+            - "scheduler"
+          env:
+            - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+              value: "postgresql://airflow:airflow@postgres-postgresql.default.svc.cluster.local/airflow"
+            - name: AIRFLOW__CORE__LOAD_EXAMPLES
+              value: "false"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"

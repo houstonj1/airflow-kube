@@ -8,7 +8,8 @@ Airflow DAGS with KubeOperator
 
 ## Local Setup
 
-- KIND
+- Docker
+- Kind
 - Helm
 - postgresql-client
 
@@ -38,3 +39,9 @@ psql -h localhost -U postgres -f sql/init.sql
 # Drop the airflow database
 psql -h localhost -U postgres -f sql/drop.sql
 ```
+
+### Dockerfile
+
+[This](Dockerfile) Dockerfile for airflow is pushed [here](https://hub.docker.com/r/houstonj1/airflow).
+
+The kubernetes manifests in this example use this Docker image.
