@@ -45,3 +45,11 @@ psql -h localhost -U postgres -f sql/drop.sql
 [This](Dockerfile) Dockerfile for airflow is pushed [here](https://hub.docker.com/r/houstonj1/airflow).
 
 The kubernetes manifests in this example use this Docker image.
+
+### Kubernetes
+
+This example uses Kustomize to deploy to a local / remote Kubernetes cluster
+
+```bash
+kubectl apply -k k8s/
+```

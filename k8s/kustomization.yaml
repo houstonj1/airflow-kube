@@ -3,6 +3,6 @@ kind: Kustomization
 commonLabels:
   app: airflow
 namespace: default
-resources:
+bases:
   - ./webserver
   - ./scheduler
