@@ -20,9 +20,10 @@ kind create cluster
 
 ### Postgres
 
+Documentation on this helm chart can be found [here](https://github.com/bitnami/charts/tree/master/bitnami/postgresql#postgresql)
+
 ```bash
 helm repo add bitnami https://charts.bitnami.com/bitnami
-
 helm repo update
 
 helm install postgres bitnami/postgresql
@@ -40,6 +41,21 @@ psql -h localhost -U postgres -f sql/init.sql
 psql -h localhost -U postgres -f sql/drop.sql
 ```
 
+### Dask
+
+Documentation for this helm chart can be found [here](https://docs.dask.org/en/latest/setup/kubernetes-helm.html)
+
+```bash
+helm repo add dask https://helm.dask.org/
+helm repo update
+
+helm install dask dask/dask
+
+# Connecting to Dask
+kubectl port-forward --namespace default svc/dask-scheduler 3001:8786 &
+kubectl port-forward --namespace default svc/dask-scheduler 3002:80 &
+```
+
 ### Dockerfile
 
 [This](Dockerfile) Dockerfile for airflow is pushed [here](https://hub.docker.com/r/houstonj1/airflow).
@@ -52,4 +68,7 @@ This example uses Kustomize to deploy to a local / remote Kubernetes cluster
 
 ```bash
 kubectl apply -k k8s/
+
+# Connecting to Airflow
+kubectl port-forward --namespace default svc/airflow-webserver 3000:80 &
 ```
