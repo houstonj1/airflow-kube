@@ -8,10 +8,13 @@ WORKDIR ${AIRFLOW_HOME}
 RUN useradd -s /bin/bash -d ${AIRFLOW_HOME} airflow
 
 RUN apt update && \
-    apt install -y build-essential
+    apt install -y build-essential && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip
-RUN pip install apache-airflow[kubernetes,postgres]==1.10.12
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir \
+    apache-airflow[kubernetes,postgres]==1.10.12 \
+    airflow-exporter
 
 COPY dags dags
 
