@@ -33,7 +33,3 @@ spec:
           envFrom:
             - configMapRef:
                 name: airflow-config
-          resources:
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
