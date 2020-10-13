@@ -4,7 +4,7 @@ All things airflow + kube
 
 Airflow on Kube  
 Airflow with KubeExecutor  
-Airflow DAGS with KubeOperator
+Airflow Dags with KubeOperator
 
 ## Local Setup
 
@@ -12,6 +12,12 @@ Airflow DAGS with KubeOperator
 - Kind
 - Helm
 - postgresql-client
+
+Steps to get up and running:
+1. Start kind cluster
+2. Install Postgresql
+3. Run the [init.sql](sql/init.sql) script against postgresql
+4. Kubectl apply k8s yaml
 
 ### Kube
 ```bash
@@ -41,21 +47,6 @@ psql -h localhost -U postgres -f sql/init.sql
 psql -h localhost -U postgres -f sql/drop.sql
 ```
 
-### Dask
-
-Documentation for this helm chart can be found [here](https://docs.dask.org/en/latest/setup/kubernetes-helm.html)
-
-```bash
-helm repo add dask https://helm.dask.org/
-helm repo update
-
-helm install dask dask/dask
-
-# Connecting to Dask
-kubectl port-forward --namespace default svc/dask-scheduler 3001:8786 &
-kubectl port-forward --namespace default svc/dask-scheduler 3002:80 &
-```
-
 ### Dockerfile
 
 [This](Dockerfile) Dockerfile for airflow is pushed [here](https://hub.docker.com/r/houstonj1/airflow).
@@ -71,4 +62,18 @@ kubectl apply -k k8s/
 
 # Connecting to Airflow
 kubectl port-forward --namespace default svc/airflow-webserver 3000:80 &
+```
+### Dask ( Optional )
+
+Documentation for this helm chart can be found [here](https://docs.dask.org/en/latest/setup/kubernetes-helm.html)
+
+```bash
+helm repo add dask https://helm.dask.org/
+helm repo update
+
+helm install dask dask/dask
+
+# Connecting to Dask
+kubectl port-forward --namespace default svc/dask-scheduler 3001:8786 &
+kubectl port-forward --namespace default svc/dask-scheduler 3002:80 &
 ```
