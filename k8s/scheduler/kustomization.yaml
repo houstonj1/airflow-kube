@@ -4,3 +4,6 @@ commonLabels:
   tier: scheduler
 resources:
   - "deployment.yaml"
+  - "role.yaml"
+  - "rolebinding.yaml"
+  - "serviceaccount.yaml"

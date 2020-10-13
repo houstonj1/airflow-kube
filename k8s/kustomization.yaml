@@ -11,5 +11,5 @@ configMapGenerator:
     literals:
       - AIRFLOW__CORE__SQL_ALCHEMY_CONN="postgresql://airflow:airflow@postgres-postgresql.default.svc.cluster.local/airflow"
       - AIRFLOW__CORE__LOAD_EXAMPLES="false"
-      # - AIRFLOW__CORE__EXECUTOR="KubernetesExecutor"
-      # - AIRFLOW__KUBERNETES__DAGS_IN_IMAGE="true"
+      - AIRFLOW__CORE__EXECUTOR="KubernetesExecutor"
+      - AIRFLOW__KUBERNETES__DAGS_IN_IMAGE="true"

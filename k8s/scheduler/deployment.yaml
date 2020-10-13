@@ -33,3 +33,4 @@ spec:
           envFrom:
             - configMapRef:
                 name: airflow-config
+      serviceAccountName: airflow-scheduler
