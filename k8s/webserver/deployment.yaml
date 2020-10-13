@@ -53,3 +53,4 @@ spec:
             periodSeconds: 3
             successThreshold: 1
             timeoutSeconds: 1
+      serviceAccountName: airflow-webserver
