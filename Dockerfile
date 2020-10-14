@@ -8,7 +8,7 @@ WORKDIR ${AIRFLOW_HOME}
 RUN useradd -s /bin/bash -d ${AIRFLOW_HOME} airflow
 
 RUN apt update && \
-    apt install -y build-essential && \
+    apt install -y curl dnsutils build-essential && \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir --upgrade pip
