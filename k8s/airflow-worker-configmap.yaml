@@ -6,4 +6,4 @@ metadata:
     tier: worker
 data:
   AIRFLOW_HOME: /opt/airflow
-  AIRFLOW__CORE__UNIT_TEST_MODE: "false"
+  AIRFLOW__CORE__SQL_ALCHEMY_CONN: "postgresql://airflow:airflow@postgres-postgresql.default.svc.cluster.local/airflow"
