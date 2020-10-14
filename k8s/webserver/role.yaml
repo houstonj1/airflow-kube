@@ -5,5 +5,8 @@ metadata:
   name: airflow-webserver
 rules:
 - apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
   resources: ["pods/log"]
-  verbs: ["get", "list"]
+  verbs: ["get", "list", "watch"]
