@@ -3,7 +3,7 @@ kind: Kustomization
 commonLabels:
   tier: scheduler
 resources:
-  - "deployment.yaml"
-  - "role.yaml"
-  - "rolebinding.yaml"
-  - "serviceaccount.yaml"
+  - deployment.yaml
+  - role.yaml
+  - rolebinding.yaml
+  - serviceaccount.yaml

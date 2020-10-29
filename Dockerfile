@@ -14,7 +14,9 @@ RUN apt update && \
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir \
     apache-airflow[kubernetes,postgres]==1.10.12 \
-    airflow-exporter
+    airflow-exporter \
+    dask[complete]==2.30.0 \
+    distributed==2.30.0
 
 COPY dags dags
 
